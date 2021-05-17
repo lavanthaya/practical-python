@@ -3,6 +3,8 @@
 # Exercise 1.7
 # Exercise 1.8
 # Exercise 1.9
+# Exercise 1.10
+# Exercise 1.11
 
 principal = 500000.0
 rate = 0.05
@@ -21,6 +23,9 @@ while principal > 0:
     else:
        payment = 2684.11
     
+    if (principal * (1 + rate/12)) <= payment:
+       payment = principal * (1+rate/12)
+ 
     #print(month,payment)
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
