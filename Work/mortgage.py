@@ -5,6 +5,7 @@
 # Exercise 1.9
 # Exercise 1.10
 # Exercise 1.11
+# Exercise 1.17
 
 principal = 500000.0
 rate = 0.05
@@ -29,8 +30,8 @@ while principal > 0:
     #print(month,payment)
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
-    print (month, round(total_paid,2), round(principal,2))
-
+    #print (month, round(total_paid,2), round(principal,2))
+    print (f'{month} ${total_paid:0.2f} ${principal:0.2f}')	# Exercise 1.17
 
 print('Total paid', round(total_paid,2))
 print('Total month', month)
