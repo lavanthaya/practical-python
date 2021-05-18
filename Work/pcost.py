@@ -2,21 +2,25 @@
 #
 # Exercise 1.27
 # Exercise 1.30
-
+# Exercise 1.31
 
 def portfolio_cost(filename):
-    tot_cost = 0
+    try:
+      tot_cost = 0
 
-    f = open(filename, 'rt')
-    next(f).split(',')
+      f = open(filename, 'rt')
+      next(f).split(',')
 
-    for line in f:
-        row = line.split(',')
-        #print(row[2])
-        tot_cost += (float(row[2])*float(row[1])) 
+      for line in f:
+          row = line.split(',')
+          #print(row[2])
+          tot_cost += (float(row[2])*float(row[1])) 
 
-    f.close()
-    return tot_cost
+      f.close()
+      return tot_cost
+
+    except ValueError:
+      print("Missing Data, clean the file")
 
 cost = portfolio_cost("Data/portfolio.csv")
 print('Total cost:', cost)
