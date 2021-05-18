@@ -3,18 +3,22 @@
 # Exercise 1.27
 # Exercise 1.30
 # Exercise 1.31
+# Exercise 1.32
+
+import csv
 
 def portfolio_cost(filename):
     try:
       tot_cost = 0
 
-      f = open(filename, 'rt')
-      next(f).split(',')
+      f = open(filename)
+      rows = csv.reader(f)
+      next(rows)
 
-      for line in f:
-          row = line.split(',')
-          #print(row[2])
-          tot_cost += (float(row[2])*float(row[1])) 
+      for line in rows:
+          #row = line.split(',')
+          #tot_cost += (float(row[2])*float(row[1]))
+          tot_cost += (float(line[2])*float(line[1]))
 
       f.close()
       return tot_cost
