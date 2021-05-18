@@ -1,17 +1,23 @@
 # pcost.py
 #
 # Exercise 1.27
+# Exercise 1.30
 
-tot_cost = 0
 
-f = open('Data/portfolio.csv', 'rt')
-next(f).split(',')
+def portfolio_cost(filename):
+    tot_cost = 0
 
-for line in f:
-    row = line.split(',')
-    #print(row[2])
-    tot_cost += (float(row[2])*float(row[1])) 
+    f = open(filename, 'rt')
+    next(f).split(',')
 
-f.close()
+    for line in f:
+        row = line.split(',')
+        #print(row[2])
+        tot_cost += (float(row[2])*float(row[1])) 
 
-print(f'Total cost {tot_cost:0.2f}')
+    f.close()
+    return tot_cost
+
+cost = portfolio_cost("Data/portfolio.csv")
+print('Total cost:', cost)
+#print(f'Total cost {cost:0.2f}')
