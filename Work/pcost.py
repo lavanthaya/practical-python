@@ -4,8 +4,10 @@
 # Exercise 1.30
 # Exercise 1.31
 # Exercise 1.32
+# Exercise 1.33
 
 import csv
+import sys
 
 def portfolio_cost(filename):
     try:
@@ -26,6 +28,11 @@ def portfolio_cost(filename):
     except ValueError:
       print("Missing Data, clean the file")
 
-cost = portfolio_cost("Data/portfolio.csv")
+if len(sys.argv) == 2:
+   filename = sys.argv[1]
+else:
+   filename = 'Data/portfolio.csv'
+
+cost = portfolio_cost(filename)
 print('Total cost:', cost)
 #print(f'Total cost {cost:0.2f}')
