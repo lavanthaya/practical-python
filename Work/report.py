@@ -6,6 +6,7 @@
 
 
 import csv
+from pprint import pprint
 
 def read_portfolio(filename):
     portfolio = []
@@ -40,3 +41,30 @@ def read_prices(filename):
             pass
 
     return stock_price
+
+# Exercise 2.7
+def main():
+   portfolio = read_portfolio('Data/portfolio.csv')
+   prices = read_prices('Data/prices.csv')
+
+   current_portfolio = {}
+   
+   for n in range(len(portfolio)):
+       name = portfolio[n]['name']
+       shares = int(portfolio[n]['shares'])
+       price = float(portfolio[n]['price'])
+       
+       current_value = shares * float(prices[name][0]) 
+       
+       if price <= float(prices[name][0]):
+          status = 'Gain'
+       else:
+          status = 'Loss'
+
+       current_portfolio[name] = [current_value,status] 
+
+   pprint(current_portfolio)
+   
+
+if __name__ == "__main__":
+    main()
