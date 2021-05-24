@@ -2,6 +2,8 @@
 #
 # Exercise 2.4
 # Exercise 2.5
+# Exercise 2.6
+
 
 import csv
 
@@ -21,3 +23,20 @@ def read_portfolio(filename):
             portfolio.append(info)
             
     return portfolio
+
+def read_prices(filename):
+    
+    stock_price = {}
+
+    f = open(filename, 'r')
+    rows = csv.reader(f)
+    for row in rows:
+        try:
+            
+            stock_price[row[0]] = float(row[1]),
+            
+        except IndexError:
+            print("Index Error")
+            pass
+
+    return stock_price
