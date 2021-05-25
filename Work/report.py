@@ -68,3 +68,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#Exercise 2.9
+def make_report(portfolio, prices):
+   
+   report = []
+
+   for n in range(len(portfolio)):
+       name = portfolio[n]['name']
+       shares = int(portfolio[n]['shares'])
+       price_old = float(portfolio[n]['price'])
+       price_current = float(prices[name][0])
+       change =  price_current - price_old
+
+       report.append((name,shares,price_current,change))
+       
+   return report
