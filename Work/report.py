@@ -42,7 +42,32 @@ def read_prices(filename):
 
     return stock_price
 
+
+#Exercise 2.9
+def make_report(portfolio, prices):
+   
+   report = []
+
+   for n in range(len(portfolio)):
+       name = portfolio[n]['name']
+       shares = int(portfolio[n]['shares'])
+       price_old = float(portfolio[n]['price'])
+       price_current = float(prices[name][0])
+       change =  price_current - price_old
+
+       report.append((name,shares,'${:.2f}'.format(price_current),change))
+      
+   headers = ('Name', 'Shares', 'Price', 'Change')
+   print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
+   print('---------- ---------- ---------- -----------')
+   for r in report:
+       print('%10s %10d %10s %10.2f' % r)
+
+   return 0
+
+
 # Exercise 2.7
+# Exercise 2.11
 def main():
    portfolio = read_portfolio('Data/portfolio.csv')
    prices = read_prices('Data/prices.csv')
@@ -64,24 +89,8 @@ def main():
        current_portfolio[name] = [current_value,status] 
 
    pprint(current_portfolio)
-   
+   print("Printing report")
+   make_report(portfolio, prices)
 
 if __name__ == "__main__":
     main()
-
-
-#Exercise 2.9
-def make_report(portfolio, prices):
-   
-   report = []
-
-   for n in range(len(portfolio)):
-       name = portfolio[n]['name']
-       shares = int(portfolio[n]['shares'])
-       price_old = float(portfolio[n]['price'])
-       price_current = float(prices[name][0])
-       change =  price_current - price_old
-
-       report.append((name,shares,price_current,change))
-       
-   return report
