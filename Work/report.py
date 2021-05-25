@@ -3,7 +3,7 @@
 # Exercise 2.4
 # Exercise 2.5
 # Exercise 2.6
-
+# Exercise 2.16
 
 import csv
 from pprint import pprint
@@ -15,13 +15,14 @@ def read_portfolio(filename):
         rows = csv.reader(f)
         headers = next(rows)
         for row in rows:
+            record = dict(zip(headers, row))
             #holding = (row[0], int(row[1]), float(row[2]))
-            info = {
-	            'name': row[0],
-	            'shares': int(row[1]),
-	            'price': float(row[2]),
-	    }
-            portfolio.append(info)
+            #info = {
+	    #        'name': row[0],
+	    #        'shares': int(row[1]),
+	    #        'price': float(row[2]),
+	    #}
+            portfolio.append(record)
             
     return portfolio
 

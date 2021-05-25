@@ -6,6 +6,7 @@
 # Exercise 1.32
 # Exercise 1.33
 # Exercise 2.15
+# Exercise 2.16
 
 import csv
 import sys
@@ -16,12 +17,16 @@ def portfolio_cost(filename):
 
       f = open(filename)
       rows = csv.reader(f)
-      next(rows)
+      headers = next(rows)
 
       for rowno, line in enumerate(rows, start=1):
+          record = dict(zip(headers, line))
           #row = line.split(',')
           #tot_cost += (float(row[2])*float(row[1]))
-          tot_cost += (float(line[2])*float(line[1]))
+          nshares = int(record['shares'])
+          price = float(record['price'])
+          #tot_cost += (float(line[2])*float(line[1]))
+          tot_cost += nshares * price
 
       f.close()
       return tot_cost
