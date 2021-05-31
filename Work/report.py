@@ -43,6 +43,15 @@ def read_prices(filename):
 
     return stock_price
 
+#Exercise 3.1
+def print_report(report):
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
+    print('---------- ---------- ---------- -----------')
+    for r in report:
+        print('%10s %10d %10s %10.2f' % r)
+    
+    return 0
 
 #Exercise 2.9
 def make_report(portfolio, prices):
@@ -58,11 +67,7 @@ def make_report(portfolio, prices):
 
        report.append((name,shares,'${:.2f}'.format(price_current),change))
       
-   headers = ('Name', 'Shares', 'Price', 'Change')
-   print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
-   print('---------- ---------- ---------- -----------')
-   for r in report:
-       print('%10s %10d %10s %10.2f' % r)
+   print_report(report)   
 
    return 0
 
