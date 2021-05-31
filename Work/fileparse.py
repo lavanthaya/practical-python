@@ -4,12 +4,12 @@
 
 import csv
 
-def parse_csv(filename, select=None, types=[str, int, float], has_headers=False, delimiter=','):
+def parse_csv(filename, select=None, types=[str, int, float], has_headers=False, delimiter=',',silence_error=True):
     '''
     Parse a CSV file into a list of records
     '''
     
-    if select and not has_headers:
+    if select and not has_headers and not silence_error: 
         raise RuntimeError('select requires column headers')
     
     with open(filename) as f:
@@ -39,7 +39,7 @@ def parse_csv(filename, select=None, types=[str, int, float], has_headers=False,
                     try:
                         row = [func(val) for func, val in zip(types, row) ]                        
                     except ValueError as e:
-                        if not silence_errors:
+                        if not silence_error:
                             print(f"Row {rowno}: Couldn't convert {row}")
                             print(f"Row {rowno}: Reason {e}")
                         continue
