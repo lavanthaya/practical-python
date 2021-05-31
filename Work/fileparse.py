@@ -4,12 +4,16 @@
 
 import csv
 
-def parse_csv(filename, select=None, types=[str, int, float], has_headers=False, delimiter=' '):
+def parse_csv(filename, select=None, types=[str, int, float], has_headers=False, delimiter=','):
     '''
     Parse a CSV file into a list of records
     '''
+    
+    if select and not has_headers:
+        raise RuntimeError('select requires column headers')
+    
     with open(filename) as f:
-        rows = csv.reader(f)
+        rows = csv.reader(f, delimiter=delimiter)
 
         records = []
         # Read the file headers
