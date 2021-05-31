@@ -7,41 +7,15 @@
 
 import csv
 from pprint import pprint
+import fileparse
 
 def read_portfolio(filename):
-    portfolio = []
-
-    with open(filename, 'rt') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        for row in rows:
-            record = dict(zip(headers, row))
-            #holding = (row[0], int(row[1]), float(row[2]))
-            #info = {
-	    #        'name': row[0],
-	    #        'shares': int(row[1]),
-	    #        'price': float(row[2]),
-	    #}
-            portfolio.append(record)
             
-    return portfolio
+    return fileparse.parse_csv(filename, select=['name','shares','price'], types=[str,int,float])
 
 def read_prices(filename):
-    
-    stock_price = {}
 
-    f = open(filename, 'r')
-    rows = csv.reader(f)
-    for row in rows:
-        try:
-            
-            stock_price[row[0]] = float(row[1]),
-            
-        except IndexError:
-            print("Index Error")
-            pass
-
-    return stock_price
+    return dict(fileparse.parse_csv(filename,types=[str,float], has_headers=False))
 
 #Exercise 3.1
 def print_report(report):
