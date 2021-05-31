@@ -10,26 +10,15 @@
 
 import csv
 import sys
+import report
 
 def portfolio_cost(filename):
     try:
       tot_cost = 0
 
-      f = open(filename)
-      rows = csv.reader(f)
-      headers = next(rows)
-
-      for rowno, line in enumerate(rows, start=1):
-          record = dict(zip(headers, line))
-          #row = line.split(',')
-          #tot_cost += (float(row[2])*float(row[1]))
-          nshares = int(record['shares'])
-          price = float(record['price'])
-          #tot_cost += (float(line[2])*float(line[1]))
-          tot_cost += nshares * price
-
-      f.close()
-      return tot_cost
+      portfolio = report.read_portfolio(filename)
+      
+      return sum([s['shares']*s['price'] for s in portfolio])
 
     except ValueError:
       print("Missing Data, clean the file")
