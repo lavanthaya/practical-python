@@ -71,13 +71,11 @@ def make_report(portfolio, prices):
 
    return 0
 
-
-# Exercise 2.7
-# Exercise 2.11
-def main():
-   portfolio = read_portfolio('Data/portfolio.csv')
-   prices = read_prices('Data/prices.csv')
-
+# Exercise 3.2
+def portfolio_report(portfolio,prices):
+   portfolio = read_portfolio(portfolio)
+   prices = read_prices(prices)
+    
    current_portfolio = {}
    
    for n in range(len(portfolio)):
@@ -97,6 +95,14 @@ def main():
    pprint(current_portfolio)
    print("Printing report")
    make_report(portfolio, prices)
+    
+
+# Exercise 2.7
+# Exercise 2.11
+def main():
+   
+   portfolio_report('Data/portfolio.csv', 'Data/prices.csv') 
+
 
 if __name__ == "__main__":
     main()
