@@ -33,3 +33,13 @@ cost = portfolio_cost(filename)
 print('Total cost:', cost)
 #print(f'Total cost {cost:0.2f}')
 
+def main(args):
+    if len(args) != 2:
+        raise SystemExit('Usage: %s portfoliofile' % args[0])
+    filename = args[1]
+    print('Total cost:', portfolio_cost(filename))
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)
+
