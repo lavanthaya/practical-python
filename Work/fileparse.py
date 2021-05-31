@@ -36,7 +36,13 @@ def parse_csv(filename, select=None, types=[str, int, float], has_headers=False,
                     row = [ row[index] for index in indices ]
 
                 if types:
-                    row = [func(val) for func, val in zip(types, row) ]
+                    try:
+                        row = [func(val) for func, val in zip(types, row) ]                        
+                    except ValueError as e:
+                        if not silence_errors:
+                            print(f"Row {rowno}: Couldn't convert {row}")
+                            print(f"Row {rowno}: Reason {e}")
+                        continue
 
 
                 record = dict(zip(headers, row))
